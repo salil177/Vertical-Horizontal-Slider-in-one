@@ -1,0 +1,246 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<style>
+
+   .screen-image-div{
+    text-align: center;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+  }
+  
+
+  .scrollable-image{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .mobile-common-width{
+    width:25%;
+  }
+
+
+
+
+  @media only screen and (max-width: 768px){
+    .hide-on-mobile{
+      display:none;
+    }
+
+      .mobile-common-width{
+    width:100%;
+  }
+
+
+
+       .screen-image-div{
+    display: block;
+    
+  }
+
+      .add-min-height{
+   display: block;
+  min-height: auto;
+ 
+  }
+  
+  }
+
+    @media only screen and (min-width: 768px){
+    .hide-on-desktop{
+      display:none;
+    }
+
+      .mySwiper2 .swiper-wrapper{
+        max-height:500px;
+      }
+  }
+
+ 
+  </style>
+
+<section class="section {% unless blends_with_background %}section--flush{% endunless %}">
+  <div class="section__color-wrapper">
+    <div class="container {% unless blends_with_background %}vertical-breather{% endunless %}">
+      <h2> {{ section.settings.title }}</h2>
+      <p> {{ section.settings.title-subheading }}</p>
+      
+      <div class="screen-image-div">
+
+          <div class="first-third-div mobile-common-width">
+            <div class="add-min-height">
+       <div class="title1 all-titles">
+          <img src="{{ section.settings.image1 | img_url:"1000x" }}" />
+         <div class="screen-inner-text">
+          <p class="heading--small"><b> {{ section.settings.title1-heading }}</b></p>
+          <p> {{ section.settings.title1 }}</p>
+           </div>
+       </div>
+
+            <div class="title2 all-titles">
+          <img src="{{ section.settings.image2 | img_url:"1000x" }}" />
+                <div class="screen-inner-text">
+          <p class="heading--small"><b> {{ section.settings.title2-heading }}</b></p>
+          <p> {{ section.settings.title2 }}</p>
+       </div>
+              </div>
+          </div>
+            </div>
+
+        <div class="scrollable-image">
+          <div class="swiper mySwiper hide-on-desktop">
+          <div class="swiper-wrapper">
+    <img class="swiper-slide" src="{{ section.settings.image | img_url:"1000x" }}" />
+        <img class="swiper-slide" src="{{ section.settings.image1-slide | img_url:"1000x" }}" />
+        <img class="swiper-slide" src="{{ section.settings.image2-slide | img_url:"1000x" }}" />
+</div>
+    <div class="swiper-pagination"></div>
+</div>
+          <div class=" swiper mySwiper2 hide-on-mobile">
+            <div class="swiper-wrapper">
+            <img class="swiper-slide" src="{{ section.settings.image | img_url:"1000x" }}" />
+        <img class="swiper-slide" src="{{ section.settings.image1-slide | img_url:"1000x" }}" />
+        <img class="swiper-slide" src="{{ section.settings.image2-slide | img_url:"1000x" }}" />
+</div>
+          
+            </div>
+          </div>
+        
+        <div class="mobile-last-div mobile-common-width">
+           <div class="add-min-height">
+            <div class="title3 all-titles">
+          <img src="{{ section.settings.image3 | img_url:"1000x" }}" />
+                <div class="screen-inner-text">
+          <p class="heading--small"> <b>{{ section.settings.title3-heading }}</b></p>
+          <p> {{ section.settings.title3 }}</p>
+       </div>
+              </div>
+           </div>
+          </div>
+       
+
+        </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+
+ <script>
+ if (window.matchMedia("(max-width: 767px)").matches) {
+  swiper = new Swiper(".mySwiper", {
+    direction: "horizontal",
+    slidesPerView: '1',
+    centeredSlides: true,
+    slideToClickedSlide: true,
+    loop: true,
+  });
+} else {
+  swiper = new Swiper(".mySwiper2", {
+    direction: "vertical",
+    slidesPerView: '1',
+    centeredSlides: true,
+    slideToClickedSlide: true,
+    loop: true,
+  });
+}
+  </script>
+
+{% schema %}
+{
+  "name": "Mobile Screen",
+  "class": "shopify-section--multi-column",
+  "settings": [
+       {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "1200 x 1200px .jpg recommended"
+        },
+    {
+          "type": "image_picker",
+          "id": "image1-slide",
+          "label": "Image",
+          "info": "1200 x 1200px .jpg recommended"
+        },
+    {
+          "type": "image_picker",
+          "id": "image2-slide",
+          "label": "Image",
+          "info": "1200 x 1200px .jpg recommended"
+        },
+     {
+          "type": "text",
+          "id": "title",
+          "label": "Main Heading",
+          "default": "Your content"
+        },
+     {
+          "type": "text",
+          "id": "title-subheading",
+          "label": "Sub Heading",
+          "default": "Your content"
+        },
+    {
+          "type": "image_picker",
+          "id": "image1",
+          "label": "Title 1 Image",
+          "info": "1200 x 1200px .jpg recommended"
+        },
+       {
+          "type": "text",
+          "id": "title1-heading",
+          "label": "Title 1 Heading",
+          "default": "Your content"
+        },
+    {
+          "type": "text",
+          "id": "title1",
+          "label": "Title 1",
+          "default": "Your content"
+        },
+     {
+          "type": "image_picker",
+          "id": "image2",
+          "label": "Title 2 Image",
+          "info": "1200 x 1200px .jpg recommended"
+        },
+      {
+          "type": "text",
+          "id": "title2-heading",
+          "label": "Title 2 Heading",
+          "default": "Your content"
+        },
+    
+     {
+          "type": "text",
+          "id": "title2",
+          "label": "Title 2",
+          "default": "Your content"
+        },
+     {
+          "type": "image_picker",
+          "id": "image3",
+          "label": "Title 3 Image",
+          "info": "1200 x 1200px .jpg recommended"
+        },
+      {
+          "type": "text",
+          "id": "title3-heading",
+          "label": "Title 3 Heading",
+          "default": "Your content"
+        },
+     {
+          "type": "text",
+          "id": "title3",
+          "label": "Title 3",
+          "default": "Your content"
+        }
+  ],
+  "presets": [
+    {
+      "name": "Mobile Screen"
+    }
+  ]
+}
+{% endschema %}
